@@ -1,0 +1,26 @@
+## Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+## Rider
+.idea/
+
+## Local database and generated files
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+## Logs
+*.log

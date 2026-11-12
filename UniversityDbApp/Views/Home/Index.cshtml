@@ -1,0 +1,56 @@
+@model IEnumerable<UniversityDbApp.Models.Department>
+
+@{
+    ViewData["Title"] = "Кафедралар мен оқытушылар";
+}
+
+<section class="py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+        <div>
+            <h1 class="mb-2">Университет кафедралары</h1>
+            <p class="lead mb-0">Кафедра мен оған тіркелген оқытушылар арасындағы байланыс.</p>
+        </div>
+        <a class="btn btn-success" asp-controller="Home" asp-action="Create">Оқытушы қосу</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info" role="alert">
+            Дерекқорда кафедралар табылмады. Миграцияны қолданып көріңіз.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (Department department in Model)
+            {
+                <div class="col-12 col-lg-6">
+                    <article class="card h-100 shadow-sm">
+                        <div class="card-header">
+                            <h2 class="h5 mb-0">@department.Name</h2>
+                        </div>
+                        <div class="card-body">
+                            @if (department.Teachers.Count == 0)
+                            {
+                                <p class="text-muted mb-0">Бұл кафедрада оқытушы жоқ.</p>
+                            }
+                            else
+                            {
+                                <ul class="list-group list-group-flush">
+                                    @foreach (Teacher teacher in department.Teachers.OrderBy(item => item.LastName))
+                                    {
+                                        <li class="list-group-item px-0">
+                                            <strong>@teacher.FirstName @teacher.LastName</strong>
+                                            <br />
+                                            <a href="mailto:@teacher.Email">@teacher.Email</a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+</section>

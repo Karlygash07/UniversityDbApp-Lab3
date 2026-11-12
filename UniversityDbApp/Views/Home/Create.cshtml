@@ -1,0 +1,53 @@
+@model UniversityDbApp.Models.Teacher
+
+@{
+    ViewData["Title"] = "Оқытушы қосу";
+}
+
+<section class="py-4">
+    <h1 class="mb-3">Оқытушы қосу</h1>
+
+    @if (ViewBag.Departments is not Microsoft.AspNetCore.Mvc.Rendering.SelectList departments || !departments.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            Кафедралар табылмады. Алдымен дерекқорға кафедра қосыңыз.
+        </div>
+    }
+    else
+    {
+        <form asp-action="Create" method="post" class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-md-6">
+                <label asp-for="FirstName" class="form-label">Аты</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="LastName" class="form-label">Тегі</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Email" class="form-label">Электрондық пошта</label>
+                <input asp-for="Email" class="form-control" type="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="DepartmentId" class="form-label">Кафедра</label>
+                <select asp-for="DepartmentId" asp-items="departments" class="form-select">
+                    <option value="">Кафедраны таңдаңыз</option>
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Сақтау</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">Болдырмау</a>
+            </div>
+        </form>
+    }
+</section>

@@ -1,0 +1,18 @@
+@model UniversityDbApp.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Қате";
+}
+
+<section class="py-5">
+    <h1 class="text-danger">Сұрауды орындау кезінде қате пайда болды.</h1>
+    <p>Өтінішті кейінірек қайталап көріңіз.</p>
+
+    @if (Model.ShowRequestId)
+    {
+        <p>
+            <strong>Сұрау идентификаторы:</strong>
+            <code>@Model.RequestId</code>
+        </p>
+    }
+</section>
